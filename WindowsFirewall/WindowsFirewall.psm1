@@ -308,38 +308,6 @@ Function Remove-FirewallRule
     {
         }
     }
-Function Get-FirewallProfile
-{
-    [CmdletBinding()]
-    Param
-    (
-    $Profile
-    )
-    Begin
-    {
-        # Profiles
-        $NET_FW_PROFILE2_DOMAIN = 1
-        $NET_FW_PROFILE2_PRIVATE = 2
-        $NET_FW_PROFILE2_PUBLIC = 4
-        $NET_FW_PROFILE2_ALL = 2147483647
-        
-        $Profiles = @{1 = 'Domain'; 2 = 'Private'; 4 = 'Public'}
-        }
-    Process
-    {
-        if ($Profile -ne $NET_FW_PROFILE2_ALL)
-        {
-            Return $Profiles.Keys |Where-Object {$_ -band $Profile} |ForEach-Object {$Profiles.Item($_)}
-            }
-        else
-        {
-            Return "All"
-            }
-        }
-    End
-    {
-        }
-    }
 Function Test-FirewallRule
 {
     [CmdletBinding()]
