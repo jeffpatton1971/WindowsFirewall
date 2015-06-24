@@ -513,46 +513,10 @@ Function Get-FWServices
         }
     Process
     {
-        $FWServices = @()
-
-        ForEach($item in $FirewallPolicy.Services)
-        {
-            $ThisService = New-Object -TypeName PSObject -Property @{
-                Property = "Service"
-                Name = $item.Name
-                Type = $item.Type
-                Customized = $Item.Customized
-                IpVersion = $item.IpVersion
-                Scope = $item.Scope
-                RemoteAddresses = $item.RemoteAddresses
-                Enabled = $item.Enabled
-                Protocol = "-"
-                Port = "-"
-                Builtin = "-"
-                }
-            ForEach ($entry in $Item.GloballyOpenPorts)
-            {
-                $ThisEntry = New-Object -TypeName PSObject -Property @{
-                    Property = "Port"
-                    Name = $entry.Name
-                    Type = "-"
-                    Customized = "-"
-                    IpVersion = $entry.IpVersion
-                    Scope = $entry.Scope
-                    RemoteAddresses = $entry.RemoteAddresses
-                    Enabled = $entry.Enabled
-                    Protocol = $entry.Protocol
-                    Port = $entry.Port
-                    BuiltIn = $entry.Builtin
-                    }
-                }
-                $FWServices += $ThisService
-                $FwServices += $ThisEntry
-            }
         }
     End
     {
-        Return $FwServices
+        Return $FirewallPolicy.Services
         }
     }
 Function Get-FWApplications
@@ -592,25 +556,10 @@ Function Get-FWApplications
         }
     Process
     {
-        $Applications = @()
-
-        ForEach($item in $FirewallPolicy.AuthorizedApplications)
-        {
-            $ThisApplication = New-Object -TypeName PSObject -Property @{
-                Property = "Application"
-                Name = $item.Name
-                ProcessImageFileName = $item.ProcessImageFileName
-                IpVersion = $item.IpVersion
-                Scope = $item.Scope
-                RemoteAddresses = $item.RemoteAddresses
-                Enabled = $item.Enabled
-                }
-            $Applications += $ThisApplication
-            }
         }
     End
     {
-        Return $Applications
+        Return $FirewallPolicy.AuthorizedApplications
         }
     }
 Function Get-FWGloballyOpenPorts
@@ -647,26 +596,10 @@ Function Get-FWGloballyOpenPorts
         }
     Process
     {
-        $OpenPorts = @()
-
-        ForEach($item in $FirewallPolicy.GloballyOpenPorts)
-        {
-            $ThisPort = New-Object -TypeName PSObject -Property @{
-                Name = $item.Name
-                IpVersion = $item.IpVersion
-                Protocol = $item.Protocol
-                Port = $item.Port
-                Scope = $item.Scope
-                RemoteAddresses = $item.RemoteAddresses
-                Enabled = $item.Enabled
-                BuiltIn = $item.BuiltIn
-                }
-            $OpenPorts += $ThisPort
-            }
         }
     End
     {
-        Return $OpenPorts
+        Return $FirewallPolicy.GloballyOpenPorts
         }
     }
 Function New-FWPortOpening
