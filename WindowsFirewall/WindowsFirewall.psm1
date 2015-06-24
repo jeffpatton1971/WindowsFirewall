@@ -232,6 +232,9 @@ namespace PTECH
     }
 }
 "@
+$FwPolicy = New-Object -ComObject "HNetCfg.FwPolicy2";
+$FwMgr = New-Object -ComObject "HNetCfg.FwMgr";
+
 Function Get-FirewallRule
 {
     [CmdletBinding()]
@@ -242,7 +245,7 @@ Function Get-FirewallRule
     )
     Begin
     {
-        $FwPolicy = New-Object -ComObject HNetCfg.FwPolicy2
+        #$FwPolicy = New-Object -ComObject HNetCfg.FwPolicy2
         $CurrentProfiles = $FwPolicy.CurrentProfileTypes
         if ($Name)
         {
@@ -271,7 +274,7 @@ Function New-FirewallRule
     Begin
     {
         # Direction
-        $FwPolicy = New-Object -ComObject HNetCfg.FwPolicy2
+        #$FwPolicy = New-Object -ComObject HNetCfg.FwPolicy2
         $RuleObjects = $FwPolicy.Rules
         }
     Process
@@ -292,7 +295,7 @@ Function Remove-FirewallRule
     )
     Begin
     {
-        $FwPolicy = New-Object -ComObject HNetCfg.FwPolicy2
+        #$FwPolicy = New-Object -ComObject HNetCfg.FwPolicy2
         $RuleObjects = $FwPolicy.Rules
         $CurrentProfiles = $FwPolicy.CurrentProfileTypes
         $FwRule = Get-FirewallRule -Name $Name
@@ -508,8 +511,8 @@ Function Get-FWServices
         )
     Begin
     {
-        $Firewall = New-Object -ComObject "HNetCfg.FwMgr"
-        $FirewallPolicy = $Firewall.LocalPolicy.CurrentProfile 
+        #$FwMgr = New-Object -ComObject "HNetCfg.FwMgr"
+        $FirewallPolicy = $FwMgr.LocalPolicy.CurrentProfile 
         }
     Process
     {
@@ -551,8 +554,8 @@ Function Get-FWApplications
         )
     Begin
     {
-        $Firewall = New-Object -ComObject "HNetCfg.FwMgr"
-        $FirewallPolicy = $Firewall.LocalPolicy.CurrentProfile 
+        #$FwMgr = New-Object -ComObject "HNetCfg.FwMgr"
+        $FirewallPolicy = $FwMgr.LocalPolicy.CurrentProfile 
         }
     Process
     {
@@ -591,8 +594,8 @@ Function Get-FWGloballyOpenPorts
         )
     Begin
     {
-        $Firewall = New-Object -ComObject "HNetCfg.FwMgr"
-        $FirewallPolicy = $Firewall.LocalPolicy.CurrentProfile 
+        #$FwMgr = New-Object -ComObject "HNetCfg.FwMgr"
+        $FirewallPolicy = $FwMgr.LocalPolicy.CurrentProfile 
         }
     Process
     {
@@ -643,7 +646,7 @@ Function New-FWPortOpening
         )
     Begin
     {
-        $FwMgr = New-Object -ComObject HNetCfg.FwMgr
+        #$FwMgr = New-Object -ComObject HNetCfg.FwMgr
         $FwProfile = $FwMgr.LocalPolicy.CurrentProfile
         }
     Process
