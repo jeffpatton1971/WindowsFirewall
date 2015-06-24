@@ -663,3 +663,35 @@ Function New-FWPortOpening
         $FwProfile.GloballyOpenPorts.Add($FwPort)
         }
     }
+function Get-FirewallProfile
+{
+    Param
+    (
+    [ValidateSet('Domain','Public','Private')]
+    [string]$Type
+    )
+    Begin
+    {
+        switch ($Type)
+        {
+            'Domain'
+            {
+                $FwMgr.LocalPolicy.GetProfileByType(0)
+                }
+            'Private'
+            {
+                $FwMgr.LocalPolicy.GetProfileByType(1)
+                }
+            'Public'
+            {
+                $FwMgr.LocalPolicy.GetProfileByType(2)
+                }
+            }
+        }
+    Process
+    {
+        }
+    End
+    {
+        }
+    }
