@@ -245,7 +245,6 @@ Function Get-FirewallRule
     )
     Begin
     {
-        #$FwPolicy = New-Object -ComObject HNetCfg.FwPolicy2
         $CurrentProfiles = $FwPolicy.CurrentProfileTypes
         if ($Name)
         {
@@ -274,7 +273,6 @@ Function New-FirewallRule
     Begin
     {
         # Direction
-        #$FwPolicy = New-Object -ComObject HNetCfg.FwPolicy2
         $RuleObjects = $FwPolicy.Rules
         }
     Process
@@ -295,9 +293,7 @@ Function Remove-FirewallRule
     )
     Begin
     {
-        #$FwPolicy = New-Object -ComObject HNetCfg.FwPolicy2
         $RuleObjects = $FwPolicy.Rules
-        $CurrentProfiles = $FwPolicy.CurrentProfileTypes
         $FwRule = Get-FirewallRule -Name $Name
         }
     Process
@@ -481,8 +477,6 @@ Function Get-FWServices
         )
     Begin
     {
-        #$FwMgr = New-Object -ComObject "HNetCfg.FwMgr"
-        #$FirewallPolicy = $FwMgr.LocalPolicy.CurrentProfile 
         }
     Process
     {
@@ -526,8 +520,6 @@ Function Get-FWApplications
         )
     Begin
     {
-        #$FwMgr = New-Object -ComObject "HNetCfg.FwMgr"
-        #$FirewallPolicy = $FwMgr.LocalPolicy.CurrentProfile 
         }
     Process
     {
@@ -568,8 +560,6 @@ Function Get-FWGloballyOpenPorts
         )
     Begin
     {
-        #$FwMgr = New-Object -ComObject "HNetCfg.FwMgr"
-        #$FirewallPolicy = $FwMgr.LocalPolicy.CurrentProfile 
         }
     Process
     {
