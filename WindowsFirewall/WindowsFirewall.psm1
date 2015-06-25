@@ -476,18 +476,19 @@ Function Get-FWServices
     [CmdletBinding()]
     Param
         (
+        [__ComObject]$Profile
         )
     Begin
     {
         #$FwMgr = New-Object -ComObject "HNetCfg.FwMgr"
-        $FirewallPolicy = $FwMgr.LocalPolicy.CurrentProfile 
+        #$FirewallPolicy = $FwMgr.LocalPolicy.CurrentProfile 
         }
     Process
     {
         }
     End
     {
-        Return $FirewallPolicy.Services
+        Return $Profile.Services
         }
     }
 Function Get-FWApplications
@@ -519,18 +520,19 @@ Function Get-FWApplications
     [CmdletBinding()]
     Param
         (
+        [__ComObject]$Profile
         )
     Begin
     {
         #$FwMgr = New-Object -ComObject "HNetCfg.FwMgr"
-        $FirewallPolicy = $FwMgr.LocalPolicy.CurrentProfile 
+        #$FirewallPolicy = $FwMgr.LocalPolicy.CurrentProfile 
         }
     Process
     {
         }
     End
     {
-        Return $FirewallPolicy.AuthorizedApplications
+        Return $Profile.AuthorizedApplications
         }
     }
 Function Get-FWGloballyOpenPorts
@@ -559,18 +561,19 @@ Function Get-FWGloballyOpenPorts
     [CmdletBinding()]
     Param
         (
+        [__ComObject]$Profile
         )
     Begin
     {
         #$FwMgr = New-Object -ComObject "HNetCfg.FwMgr"
-        $FirewallPolicy = $FwMgr.LocalPolicy.CurrentProfile 
+        #$FirewallPolicy = $FwMgr.LocalPolicy.CurrentProfile 
         }
     Process
     {
         }
     End
     {
-        Return $FirewallPolicy.GloballyOpenPorts
+        Return $Profile.GloballyOpenPorts
         }
     }
 Function New-FWPortOpening
@@ -635,7 +638,7 @@ function Get-FirewallProfile
 {
     Param
     (
-    [ValidateSet('Domain','Public','Private')]
+    [ValidateSet('Domain','Public','Private','Current')]
     [string]$Type
     )
     Begin
@@ -653,6 +656,10 @@ function Get-FirewallProfile
             'Public'
             {
                 $FwMgr.LocalPolicy.GetProfileByType(2)
+                }
+            default
+            {
+                $FwMgr.LocalPolicy.CurrentProfile
                 }
             }
         }
