@@ -476,6 +476,7 @@ Function Get-FWServices
     [CmdletBinding()]
     Param
         (
+        [Parameter(Mandatory=$true)]
         [__ComObject]$Profile
         )
     Begin
@@ -520,6 +521,7 @@ Function Get-FWApplications
     [CmdletBinding()]
     Param
         (
+        [Parameter(Mandatory=$true)]
         [__ComObject]$Profile
         )
     Begin
@@ -561,6 +563,7 @@ Function Get-FWGloballyOpenPorts
     [CmdletBinding()]
     Param
         (
+        [Parameter(Mandatory=$true)]
         [__ComObject]$Profile
         )
     Begin
