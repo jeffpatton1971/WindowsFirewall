@@ -602,29 +602,28 @@ Function New-FWPortOpening
     [CmdletBinding()]
     Param
         (
-        [string]$RuleName,
-        [int]$RuleProtocol,
-        [double]$RulePort,
-        [string]$RuleRemoteAddresses,
-        [bool]$RuleEnabled
+        [string]$Name,
+        [int]$Protocol,
+        [double]$Port,
+        [string]$RemoteAddresses,
+        [bool]$Enabled,
+        [__ComObject]$Profile
         )
     Begin
     {
-        #$FwMgr = New-Object -ComObject HNetCfg.FwMgr
-        $FwProfile = $FwMgr.LocalPolicy.CurrentProfile
         }
     Process
     {
         $FwPort = New-Object -ComObject HNetCfg.FwOpenPort
-        $FwPort.Name = $RuleName
-        $FwPort.Protocol = $RuleProtocol
-        $FwPort.Port = $RulePort
-        $FwPort.RemoteAddresses = $RuleRemoteAddresses
-        $FwPort.Enabled = $RuleEnabled
+        $FwPort.Name = $Name
+        $FwPort.Protocol = $Protocol
+        $FwPort.Port = $Port
+        $FwPort.RemoteAddresses = $RemoteAddresses
+        $FwPort.Enabled = $Enabled
         }
     End
     {
-        $FwProfile.GloballyOpenPorts.Add($FwPort)
+        $Profile.GloballyOpenPorts.Add($FwPort)
         }
     }
 function Get-FirewallProfile
