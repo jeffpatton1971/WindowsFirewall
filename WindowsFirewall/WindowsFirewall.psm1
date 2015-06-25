@@ -425,6 +425,7 @@ Function ConvertTo-Rule
     Process
     {
         [PTECH.Networking.Firewall.Rule]$Rule = New-Object PTECH.Networking.Firewall.Rule($FwRule.Name)
+        $Rule.DisplayName = $FwRule.Name
         $Rule.DisplayGroup = $FwRule.Grouping
         $Rule.Access = $FwRule.Action
         $Rule.State = $FwRule.Enabled
